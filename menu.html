@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Menu | Anna's Mess</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #f1c40f; --bg: #0a0a0a; --white: #ffffff; --card: #141414; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { background: var(--bg); color: var(--white); padding-top: 100px; line-height: 1.6; }
+
+        /* --- NAVIGATION TABS --- */
+        .navbar {
+            position: fixed; top: 0; width: 100%; background: #000;
+            display: flex; justify-content: center; padding: 20px 0;
+            z-index: 1000; border-bottom: 2px solid var(--gold);
+        }
+        .nav-tabs { display: flex; list-style: none; gap: 20px; }
+        .nav-tabs li a {
+            text-decoration: none; color: #fff; font-size: 13px; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 1px; padding: 8px 12px; transition: 0.3s;
+        }
+        .nav-tabs li a:hover, .nav-tabs li a.active { background: var(--gold); color: #000; border-radius: 5px; }
+
+        /* --- MENU DESIGN --- */
+        header { text-align: center; margin-bottom: 50px; }
+        header h1 { font-family: 'Playfair Display'; font-size: 3.5rem; color: var(--gold); }
+        
+        .container { max-width: 1000px; margin: auto; padding: 0 20px 100px; }
+
+        .category-header {
+            background: linear-gradient(90deg, var(--gold), transparent);
+            color: #000; padding: 10px 20px; font-weight: 700;
+            text-transform: uppercase; margin: 50px 0 20px; border-radius: 5px;
+            font-size: 1.2rem; display: flex; align-items: center; justify-content: space-between;
+        }
+
+        .menu-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .menu-item {
+            background: var(--card); padding: 15px 20px; border-radius: 10px;
+            display: flex; justify-content: space-between; align-items: center;
+            border-left: 3px solid var(--gold); transition: 0.3s;
+        }
+        .menu-item:hover { transform: translateX(10px); background: #1a1a1a; }
+        
+        .item-name { font-weight: 500; font-size: 1.05rem; }
+        .item-desc { font-size: 0.75rem; color: #777; display: block; margin-top: 3px; }
+        .item-price { color: var(--gold); font-weight: 700; font-size: 1.1rem; min-width: 80px; text-align: right; }
+
+        @media (max-width: 768px) {
+            .nav-tabs { gap: 5px; }
+            .nav-tabs li a { font-size: 9px; padding: 5px; }
+            .menu-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul class="nav-tabs">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html" class="active">Menu</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Full Menu</h1>
+        <p style="opacity: 0.5;">Our Complete Culinary Heritage (65+ Items)</p>
+    </header>
+
+    <div class="container" id="menu-container">
+        </div>
+
+    <script>
+        const menuData = [
+            { category: "Idly Special", items: [
+                {n: "Idly 2 Pc", p: "100.00", d: "Served with Sambhar & 3 Chutneys"},
+                {n: "Single Idly", p: "60.00", d: "Served with Sambhar & Chutneys"},
+                {n: "Mini Podi Idly 12 Pcs", p: "160.00", d: "Tossed in Ghee & Podi"},
+                {n: "Ghee Podi Idli 2 Pc", p: "140.00", d: "Authentic Podi Masala"},
+                {n: "Sambar Idly (Dip)", p: "125.00", d: "Idly dipped in piping hot Sambhar"},
+                {n: "Vada (1 Pc)", p: "65.00", d: "Crispy Medu Vada"},
+                {n: "Idly Vada Combo", p: "155.00", d: "1 Idly & 1 Vada"},
+                {n: "Sambar Vada (Dip)", p: "145.00", d: "Deeply soaked in Sambhar"}
+            ]},
+            { category: "Dosa Corner", items: [
+                {n: "Plain Dosa", p: "100.00", d: "Crispy golden Plain Dosa"},
+                {n: "Masala Dosa", p: "135.00", d: "With Spiced Potato filling"},
+                {n: "Ghee Roast Plain", p: "155.00", d: "Roasted in Pure Desi Ghee"},
+                {n: "Ghee Roast Masala", p: "175.00", d: "Ghee roast with Potato filling"},
+                {n: "Onion Plain Dosa", p: "135.00", d: "Topped with fresh Onions"},
+                {n: "Onion Masala Dosa", p: "155.00", d: "Onions & Potato Masala"},
+                {n: "Karam Masala Dosa", p: "160.00", d: "Spicy Red Chutney layer"},
+                {n: "Ghee Karam Masala", p: "185.00", d: "Spicy Red Chutney & Pure Ghee"},
+                {n: "Podi Masala Dosa", p: "155.00", d: "Dusted with Gunpowder Podi"},
+                {n: "Podi Plain Dosa", p: "135.00", d: "Plain Dosa with Podi"},
+                {n: "Paper Plain Dosa", p: "160.00", d: "Extra large & crispy"},
+                {n: "Paper Masala Dosa", p: "190.00", d: "Extra large with filling"},
+                {n: "Cheese Plain Dosa", p: "175.00", d: "Loaded with melted Cheese"},
+                {n: "Cheese Masala Dosa", p: "195.00", d: "Cheese & Potato filling"}
+            ]},
+            { category: "Health & Special Dosa", items: [
+                {n: "Ragi Plain Dosa", p: "135.00", d: "Healthy Finger Millet batter"},
+                {n: "Ragi Masala Dosa", p: "165.00", d: "Ragi Dosa with filling"},
+                {n: "Paneer Masala Dosa", p: "225.00", d: "Fresh Spiced Paneer filling"},
+                {n: "Mushroom Masala Dosa", p: "225.00", d: "Sauteed Mushroom filling"},
+                {n: "Set Dosa (3 Pcs)", p: "160.00", d: "Soft & Fluffy pancakes style"},
+                {n: "Onion Uttapam", p: "165.00", d: "Thick base with Onions"},
+                {n: "Tomato Onion Uttapam", p: "175.00", d: "Fresh Tomato & Onion toppings"}
+            ]},
+            { category: "Kerala Parotta Special", items: [
+                {n: "Malabar Parotta (2 Pc)", p: "150.00", d: "With Veg Gravy & Raita"},
+                {n: "Kothu Parotta (Veg)", p: "225.00", d: "Shredded Parotta with Veggies"},
+                {n: "Paneer Parotta Combo", p: "285.00", d: "Parotta with Paneer Sukka"},
+                {n: "Mushroom Parotta Combo", p: "285.00", d: "Parotta with Mushroom Sukka"},
+                {n: "Chilli Parotta", p: "210.00", d: "Spicy Indo-Chinese style Parotta"}
+            ]},
+            { category: "Rice & Meals", items: [
+                {n: "Lemon Rice", p: "160.00", d: "Tangy Lemon & Peanut tempered rice"},
+                {n: "Curd Rice", p: "150.00", d: "Cooling Curd rice with tadka"},
+                {n: "Tamarind Rice (Puliogare)", p: "160.00", d: "Traditional Tangy rice"},
+                {n: "Tomato Rice", p: "160.00", d: "Spiced Tomato flavored rice"},
+                {n: "Bisi Bele Bath", p: "185.00", d: "Lentil Rice with special spices"},
+                {n: "Full South Indian Thali", p: "350.00", d: "Rice, Sambhar, Rasam, 2 Sabzi, Curd, Sweet, Papad"}
+            ]},
+            { category: "Quick Bites / Sides", items: [
+                {n: "Veg Kurma", p: "120.00", d: "Mixed Veg Coconut Gravy"},
+                {n: "Paneer Sukka", p: "240.00", d: "Dry Spiced Paneer"},
+                {n: "Mushroom Sukka", p: "240.00", d: "Dry Spiced Mushrooms"},
+                {n: "Medhu Vada (2 Pcs)", p: "120.00", d: "Classic crispy donuts"},
+                {n: "Potato Masala Side", p: "60.00", d: "Extra Dosa filling"}
+            ]},
+            { category: "Hot Beverages", items: [
+                {n: "Filter Coffee", p: "75.00", d: "Traditional Tapovan Decoction"},
+                {n: "Sukku Milk", p: "80.00", d: "Ayurvedic 12 Herbs & Jaggery"},
+                {n: "Black Coffee", p: "60.00", d: "Strong Filter Decoction"},
+                {n: "Masala Tea", p: "50.00", d: "Ginger & Cardamom Tea"},
+                {n: "Coconut Milk Coffee", p: "125.00", d: "Vegan Specialty"},
+                {n: "Lemon Ginger Tea", p: "70.00", d: "Fresh & Refreshing"}
+            ]},
+            { category: "Cold Beverages", items: [
+                {n: "Rose Coconut Milk", p: "140.00", d: "Refreshing Rose & Coconut blend"},
+                {n: "Buttermilk (Chaas)", p: "60.00", d: "Spiced Refreshing Curd drink"},
+                {n: "Cold Coffee", p: "150.00", d: "Creamy Filter Coffee Ice blend"},
+                {n: "Fresh Lime Soda", p: "90.00", d: "Sweet / Salted / Mixed"},
+                {n: "Mango Lassi", p: "160.00", d: "Thick & Sweet Mango curd drink"}
+            ]},
+            { category: "Sweets / Desserts", items: [
+                {n: "Rava Kesari", p: "110.00", d: "Pineapple/Saffron Semolina Pudding"},
+                {n: "Payasam of the Day", p: "120.00", d: "Traditional South Indian Kheer"},
+                {n: "Ragi Chocolate Cake", p: "160.00", d: "Healthy Flourless Chocolate Slice"}
+            ]}
+        ];
+
+        const container = document.getElementById('menu-container');
+
+        menuData.forEach(cat => {
+            const section = document.createElement('div');
+            section.innerHTML = `
+                <div class="category-header">
+                    <span>${cat.category}</span>
+                    <span style="font-size: 0.8rem; opacity: 0.7;">${cat.items.length} Items</span>
+                </div>
+                <div class="menu-grid">
+                    ${cat.items.map(item => `
+                        <div class="menu-item">
+                            <div class="item-info">
+                                <span class="item-name">${item.n}</span>
+                                <span class="item-desc">${item.d}</span>
+                            </div>
+                            <span class="item-price">₹${item.p}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            container.appendChild(section);
+        });
+    </script>
+
+</body>
+</html>

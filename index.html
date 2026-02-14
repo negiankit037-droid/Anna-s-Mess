@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna's Mess | Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #f1c40f; --bg: #0a0a0a; --white: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { background: var(--bg); color: var(--white); }
+
+        /* --- STYLISH TABS (NAVIGATION) --- */
+        .navbar {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.9); /* Dark background taaki tabs dikhein */
+            display: flex;
+            justify-content: center; /* Tabs ko beech mein lane ke liye */
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            gap: 25px; /* Tabs ke beech ka space */
+        }
+
+        .nav-tabs li a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 8px 15px;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        /* Hover karne par aur Active tab par gold color */
+        .nav-tabs li a:hover, .nav-tabs li a.active {
+            color: var(--bg);
+            background: var(--gold);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), url('pic1.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display';
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            opacity: 0.8;
+            margin-bottom: 30px;
+        }
+
+        .order-btn {
+            padding: 15px 40px;
+            background: var(--gold);
+            color: #000;
+            text-decoration: none;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: 0.4s;
+        }
+
+        .order-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(241, 196, 15, 0.5);
+        }
+
+        /* Mobile View ke liye Tabs adjust kiye hain */
+        @media (max-width: 768px) {
+            .nav-tabs { gap: 10px; }
+            .nav-tabs li a { font-size: 10px; padding: 5px 8px; }
+            .hero h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul class="nav-tabs">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <p>EXPERIENCE AUTHENTICITY</p>
+        <h1>Anna's Mess</h1>
+        <p>The Soul of South India in Rishikesh</p>
+        <a href="menu.html" class="order-btn">EXPLORE MENU</a>
+    </section>
+
+</body>
+</html>

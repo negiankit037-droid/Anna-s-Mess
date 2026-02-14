@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Anna's Mess</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #f1c40f; --bg: #0a0a0a; --white: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { background: var(--bg); color: var(--white); padding-top: 100px; overflow-x: hidden; }
+
+        /* --- SAME NAVIGATION TABS --- */
+        .navbar {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .nav-tabs { display: flex; list-style: none; gap: 25px; }
+
+        .nav-tabs li a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 8px 15px;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        .nav-tabs li a:hover, .nav-tabs li a.active {
+            color: var(--bg);
+            background: var(--gold);
+        }
+
+        /* --- GALLERY DESIGN --- */
+        header { padding: 40px 20px; text-align: center; }
+        header h1 { font-family: 'Playfair Display'; font-size: 3.5rem; color: var(--gold); }
+        .line { width: 60px; height: 3px; background: var(--gold); margin: 15px auto; }
+
+        .gallery-wrapper {
+            max-width: 1300px;
+            margin: auto;
+            padding: 20px 20px 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            perspective: 1000px;
+        }
+
+        .img-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #222;
+            background: #111;
+            aspect-ratio: 4/5;
+            
+            /* SCROLL ANIMATION */
+            view-timeline-name: --scrollZoom;
+            view-timeline-axis: block;
+            animation-timeline: --scrollZoom;
+            animation-name: revealZoom;
+            animation-range: entry 5% cover 30%;
+            animation-fill-mode: both;
+        }
+
+        @keyframes revealZoom {
+            from { opacity: 0; transform: scale(0.6) translateY(100px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s;
+            cursor: pointer;
+        }
+
+        .img-card:hover img { transform: scale(1.1); filter: brightness(1.2); }
+
+        /* Full View Modal */
+        #modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 9999; justify-content: center; align-items: center;
+        }
+        #modal img { max-width: 90%; max-height: 85vh; border: 2px solid var(--gold); border-radius: 10px; }
+
+        @media (max-width: 768px) {
+            .nav-tabs { gap: 10px; }
+            .nav-tabs li a { font-size: 10px; padding: 5px 8px; }
+            header h1 { font-size: 2.5rem; }
+            .gallery-wrapper { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul class="nav-tabs">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1>Our Gallery</h1>
+        <div class="line"></div>
+        <p style="opacity: 0.5;">Scroll to see the magic of South Indian Spices</p>
+    </header>
+
+    <div class="gallery-wrapper">
+        <div class="img-card"><img src="pic1.jpg" onclick="showImg(this.src)"></div>
+        <div class="img-card"><img src="pic2.jpg" onclick="showImg(this.src)"></div>
+        <div class="img-card"><img src="pic3.jpg" onclick="showImg(this.src)"></div>
+        <div class="img-card"><img src="pic4.jpg" onclick="showImg(this.src)"></div>
+        <div class="img-card"><img src="pic5.jpg" onclick="showImg(this.src)"></div>
+        <div class="img-card"><img src="pic6.jpg" onclick="showImg(this.src)"></div>
+        <div class="img-card"><img src="pic7.jpg" onclick="showImg(this.src)"></div>
+        <div class="img-card"><img src="pic8.jpg" onclick="showImg(this.src)"></div>
+        <div class="img-card"><img src="pic9.jpg" onclick="showImg(this.src)"></div>
+        <div class="img-card"><img src="pic10.jpg" onclick="showImg(this.src)"></div>
+        <div class="img-card"><img src="pic11.jpg" onclick="showImg(this.src)"></div>
+        <div class="img-card"><img src="pic12.jpg" onclick="showImg(this.src)"></div>
+    </div>
+
+    <div id="modal" onclick="this.style.display='none'">
+        <img id="fullImg" src="">
+    </div>
+
+    <script>
+        function showImg(src) {
+            document.getElementById('fullImg').src = src;
+            document.getElementById('modal').style.display = 'flex';
+        }
+    </script>
+
+</body>
+</html>

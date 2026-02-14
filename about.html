@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Anna's Mess</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #f1c40f; --bg: #0a0a0a; --white: #ffffff; --card: #161616; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { background: var(--bg); color: var(--white); padding-top: 100px; line-height: 1.8; overflow-x: hidden; }
+
+        /* --- SAME NAVIGATION TABS --- */
+        .navbar {
+            position: fixed;
+            top: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .nav-tabs { display: flex; list-style: none; gap: 25px; }
+
+        .nav-tabs li a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 8px 15px;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        .nav-tabs li a:hover, .nav-tabs li a.active {
+            color: var(--bg);
+            background: var(--gold);
+        }
+
+        /* --- ABOUT CONTENT --- */
+        .hero-section {
+            height: 60vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('pic1.jpg') center/cover fixed;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            margin-bottom: 60px;
+        }
+        .hero-section h1 { font-family: 'Playfair Display'; font-size: clamp(3rem, 8vw, 5rem); color: var(--gold); }
+
+        .container { max-width: 900px; margin: auto; padding: 20px; }
+
+        .story-block { 
+            margin-bottom: 80px; 
+            opacity: 0; transform: translateY(30px);
+            transition: 1s ease;
+        }
+        .story-block.reveal { opacity: 1; transform: translateY(0); }
+
+        h2 { font-family: 'Playfair Display'; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
+        p { font-size: 1.1rem; color: #ccc; margin-bottom: 25px; text-align: justify; font-weight: 300; }
+
+        .highlight {
+            background: var(--card);
+            border-left: 5px solid var(--gold);
+            padding: 40px;
+            font-style: italic;
+            font-size: 1.4rem;
+            margin: 50px 0;
+            border-radius: 0 15px 15px 0;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .nav-tabs { gap: 10px; }
+            .nav-tabs li a { font-size: 10px; padding: 5px 8px; }
+            h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul class="nav-tabs">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html" class="active">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero-section">
+        <h1>Our Legacy</h1>
+        <p style="letter-spacing: 3px; opacity: 0.7;">TRADITION IN EVERY BITE</p>
+    </div>
+
+    <div class="container">
+        <div class="story-block reveal">
+            <h2>The Humble Beginnings</h2>
+            <p>Anna’s Mess was born not just as a restaurant, but as a vision to bring the soulful flavors of South India to the heart of Rishikesh. The word "Anna" in Tamil translates to "Elder Brother"—a title that carries the weight of responsibility, care, and a sense of belonging. We treat every guest as a member of our own family.</p>
+        </div>
+
+        <div class="highlight">
+            "We don't just fill stomachs; we feed the soul with the heritage of Tamil Nadu and Kerala."
+        </div>
+
+        <div class="story-block reveal">
+            <h2>The Secret of Our Kitchen</h2>
+            <p>What makes our food distinct? It’s our refusal to take shortcuts. Every morning, our chefs begin the day by hand-selecting the finest spices, which are then ground to perfection using techniques that have existed for centuries. From our signature Filter Coffee to our Ghee Podi Masala, everything is made from scratch.</p>
+            <p>We prioritize health as much as taste, incorporating ancient grains like Ragi and the natural richness of fresh Coconut Milk into our menu. No artificial colors, no MSG—just pure, honest cooking.</p>
+        </div>
+    </div>
+
+    <script>
+        // Scroll Reveal Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.story-block').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
